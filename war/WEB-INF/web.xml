@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	
+<!-- Servlet Mapping Required for all file extensions to work -->	
+<!-- While deploying to Google App Engine, replace default with _ah_default -->
+  	<servlet-mapping>
+             <servlet-name>default</servlet-name>
+             <url-pattern>/content/*</url-pattern>
+     </servlet-mapping> 
+</web-app>
