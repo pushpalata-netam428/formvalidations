@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="description">
+<meta content="pushpa" name="author">
+<title>
+	Multiple pages form validation
+</title>
+<link type="text/css" rel="stylesheet" href="/content/css/bootstrap.css" media="screen">
+<link type="text/css" rel="stylesheet" href="/content/css/bootstrap-responsive.css" media="screen">
+<style type="text/css">
+
+.error {
+	color: red;
+}
+
+.form-validate {
+	margin-top: 10px;
+	border: 1px solid #000;
+	text-align: center;
+}
+
+</style>
+</head>
+<div class="row">
+	<div class="span5 offset4">
+		<form class="form-validate" id="formtosubmit">
+			<fieldset>
+				<div id="contact-detail">
+		   			<h4>Submit your contact detail..!!</h4>
+		   			<div>
+			   		<div class="control-group">
+			   			<div class="controls">
+			    			<input type="text" name="username" placeholder="Enter your full-name" autofocus/>
+			    		</div>
+			    	</div>
+			    	<div class="control-group">
+			   			<div class="controls">
+			    			<input type="email" name="email" placeholder="Enter your email-id" autofocus/>
+			    		</div>
+			    	</div>
+			    	<div class="control-group">
+			   			<div class="controls">
+			    			<input type="number" name="phone" placeholder="Enter your phone number" autofocus/>
+			    		</div>
+			   		</div>
+			   		<div class="control-group">
+						<div class="controls">                     
+		    				<textarea id="textarea" name="comment" placeholder="Comments"></textarea>
+		  				</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+			    			<button class="btn btn-success" id="next" type="submit">Next</button>
+			    			<button class="btn btn-primary" type="reset">Reset</button>
+			    		</div>
+			    	</div>
+			    	</div>
+			    </div>
+			    <div id="personal-detail">
+			   		<h4>Submit your personal detail..!!</h4>
+			   		<div>
+				   		<div class="control-group">
+				   			<div class="controls">
+				    			<input type="date" name="dateofbirth" placeholder="Enter your date of birth {optional}" autofocus/>
+				    		</div>
+				   		</div>
+				    	<div class="control-group">
+				   			<div class="controls">
+				    			<input type="text" name="location" placeholder="Enter your home location">
+				    		</div>
+				    	</div>
+				    	<div class="control-group">
+							<div class="controls">                     
+			    				<textarea id="textarea" name="interest" placeholder="Area of interest"></textarea>
+			  				</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+				    			<button class="btn btn-success" type="submit">Submit</button>
+				    			<button class="btn btn-primary" type="button" onclick="$('#personal-detail').hide();$('#contact-detail').show();">Back</button>
+				    		</div>
+				    	</div>
+				    </div>
+		    	</div>
+		    </fieldset>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="/content/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/content/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+	
+// Calling the validate for the form having id="formtosubmit"
+	$("#personal-detail").hide();
+	$("#formtosubmit").validate( {
+		rules: {
+			username: {
+				required: true,
+				minlength: 4
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			phone: {
+				required: true,
+				minlength: 10
+			},
+			comment: {
+				required: true
+			},
+			dateofbirth: {
+				required: true
+			},
+			location: {
+				required: true,
+				minlength: 4
+			},
+			interest: {
+				required: true,
+				minlength: 4
+			}
+			
+		},
+		messages: {
+			username: {
+				required: "*Please provide your name"
+			},
+			email: {
+				required: "*Please provide your email",
+				email: "Please provide a valid email"
+			},
+			phone: {
+				required: "*Please provide your contact number",
+				minlength: "Please enter valid number, minimum 10 digits"
+			},
+			comment: {
+				required: "Please put some comments"
+			},
+			dateofbirth: {
+				required: "Please enter your date of birth in format: DD/MM/YYYY"
+			},
+			location: {
+				required: "*Please enter your location",
+				minlength: "Please enter a valid Location, minimum 4 characters"
+			},
+			interest: {
+				required: "*Please enter atleast one interest"
+			}
+			
+		}
+	});
+	
+	$("#next").on("click", function() {
+		if(!$("#formtosubmit").valid) {
+			return;
+		}
+		else{
+			$("#contact-detail").hide();
+			$("#personal-detail").show();
+		}
+
+	});
+	
+</script>
+</html>
