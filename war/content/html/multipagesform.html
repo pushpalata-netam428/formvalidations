@@ -52,7 +52,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-			    			<button class="btn btn-success" id="next" type="submit">Next</button>
+			    			<button class="btn btn-success"	onclick="next('#contact-detail', '#personal-detail');" type="submit">Next</button>
 			    			<button class="btn btn-primary" type="reset">Reset</button>
 			    		</div>
 			    	</div>
@@ -78,8 +78,34 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-				    			<button class="btn btn-success" type="submit">Submit</button>
+				    			<button class="btn btn-success"	onclick="next('#personal-detail', '#professional-detail');" type="submit">Next</button>
 				    			<button class="btn btn-primary" type="button" onclick="$('#personal-detail').hide();$('#contact-detail').show();">Back</button>
+				    		</div>
+				    	</div>
+				    </div>
+		    	</div>
+		    	<div id="professional-detail">
+			   		<h4>Submit your professional detail..!!</h4>
+			   		<div>
+				   		<div class="control-group">
+				   			<div class="controls">
+				    			<input type="date" name="dateofbirth" placeholder="Enter last company you were working" autofocus/>
+				    		</div>
+				   		</div>
+				    	<div class="control-group">
+				   			<div class="controls">
+				    			<input type="text" name="location" placeholder="Enter previous company location">
+				    		</div>
+				    	</div>
+				    	<div class="control-group">
+							<div class="controls">                     
+			    				<textarea id="textarea" name="interest" placeholder="Job Description"></textarea>
+			  				</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+				    			<button class="btn btn-success"	type="submit" onclick="formSubmit()" >Submit</button>
+				    			<button class="btn btn-primary" type="button" onclick="$('#professional-detail').hide();$('#personal-detail').show();">Back</button>
 				    		</div>
 				    	</div>
 				    </div>
@@ -94,6 +120,7 @@
 	
 // Calling the validate for the form having id="formtosubmit"
 	$("#personal-detail").hide();
+	$("#professional-detail").hide();
 	$("#formtosubmit").validate( {
 		rules: {
 			username: {
@@ -106,6 +133,7 @@
 			},
 			phone: {
 				required: true,
+				number: true,
 				minlength: 10
 			},
 			comment: {
@@ -134,6 +162,7 @@
 			},
 			phone: {
 				required: "*Please provide your contact number",
+				number: "Please enter valid number, minimum 10 digits",
 				minlength: "Please enter valid number, minimum 10 digits"
 			},
 			comment: {
@@ -153,16 +182,33 @@
 		}
 	});
 	
-	$("#next").on("click", function() {
-		if(!$("#formtosubmit").valid) {
+	function next(thisDiv, nextDiv) {
+		if("#contact-detail" == thisDiv) {
+			if(!$("#formtosubmit").valid()) {
+				return;
+			}
+	
+		}
+		
+		if("#personal-detail" == thisDiv){
+			if(!$("#formtosubmit").valid()){
+				return;
+			}
+		}
+		
+		$(thisDiv).hide();
+		$(nextDiv).show();
+	}
+	
+	function formsubmit() {
+		if(!$("#formtosubmit").valid()) {
 			return;
 		}
-		else{
-			$("#contact-detail").hide();
-			$("#personal-detail").show();
-		}
-
-	});
+	}
 	
+	
+	
+	
+
 </script>
 </html>
