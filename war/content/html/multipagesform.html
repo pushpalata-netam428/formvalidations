@@ -52,7 +52,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-			    			<button class="btn btn-success"	onclick="next('#contact-detail', '#personal-detail');" type="submit">Next</button>
+			    			<button class="btn btn-success"	onclick="next('#contact-detail', '#personal-detail');" type="button">Next</button>
 			    			<button class="btn btn-primary" type="reset">Reset</button>
 			    		</div>
 			    	</div>
@@ -78,7 +78,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-				    			<button class="btn btn-success"	onclick="next('#personal-detail', '#professional-detail');" type="submit">Next</button>
+				    			<button class="btn btn-success"	onclick="next('#personal-detail', '#professional-detail');" type="button">Next</button>
 				    			<button class="btn btn-primary" type="button" onclick="$('#personal-detail').hide();$('#contact-detail').show();">Back</button>
 				    		</div>
 				    	</div>
@@ -200,10 +200,12 @@
 		$(nextDiv).show();
 	}
 	
-	function formsubmit() {
+	function formSubmit() {
 		if(!$("#formtosubmit").valid()) {
 			return;
 		}
+		
+		alert("Form submitted");
 	}
 	
 	
